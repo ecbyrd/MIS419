@@ -80,7 +80,7 @@ Update your address or phone number:<br><br>
 	  <input type="text" name="street" value=""><br><br>
 	  City:<br>
 	  <input type="text" name="city" value=""><br><br>
-	  State:<br>
+	  State Abbreviation:<br>
 	  <input type="text" name="state" value=""><br><br>
 	  Zip Code:<br>
 	  <input type="text" name="zip" value=""><br><br>
