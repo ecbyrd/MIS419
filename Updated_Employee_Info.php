@@ -71,21 +71,7 @@ catch(PDOException $e) {
 
 ?>
 
-</tbody></table><br>
-Update your address or phone number:<br><br>
-	<form action="Update_Employee_Info.php" method="post">
-	  Phone Number [Format (xxx)xxx-xxxx]:<br>
-	  <input type="text" name="phone" value=""><br><br>
-	  Street Adress:<br>
-	  <input type="text" name="street" value=""><br><br>
-	  City:<br>
-	  <input type="text" name="city" value=""><br><br>
-	  State:<br>
-	  <input type="text" name="state" value=""><br><br>
-	  Zip Code:<br>
-	  <input type="text" name="zip" value=""><br><br>
-	  <input type="submit" value="Submit">
-	</form>
+</tbody></table>
 
 <a href="Employee_Portal.php">Go back to the menu</a>
 </body>

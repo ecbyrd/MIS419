@@ -12,6 +12,8 @@ session_start();
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
 <body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
 <?php
 
 if( $_POST['EmpEmail'] > ""){
@@ -37,6 +39,8 @@ if( $_POST['EmpEmail'] > ""){
 		
 		$stmt = $conn->query($sql);
 		
+		$empid = 'SELECT empid FROM EmpLog WHERE emp_email="' . $tempEmail . '"';
+		$_SESSION['id_emp']=$empid;
 		$matchFound = false;		
 		while($emprow = $stmt->fetch(PDO::FETCH_ASSOC)) {
 			$matchFound = true;
@@ -59,7 +63,7 @@ if(  isset($_SESSION['validemp'])  ){
 <h2>Employee System Menu</h2>
 <ul>
   <li><a href="SampleForm[CHANGE].php">Check Submissions</a></li>
-  <li><a href="Sample_EmployeeReport[CHANGE].php">View or Update your information</a><br><br>&nbsp;</li>
+  <li><a href="Employee_Info.php">View or Update your information</a><br><br>&nbsp;</li>
   <li><a href="Logout.php">Log out of the system</a></li>
 </ul>
 <?php
