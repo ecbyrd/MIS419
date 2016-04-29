@@ -4,7 +4,6 @@ session_start();
 <html>
 <?php include 'Page_Head.php';?>
 <body>
-	
 <?php include 'Site_Header.php'; ?>
 
 <?php
@@ -53,14 +52,13 @@ if( $_POST['EmpEmail'] > ""){
 if(  isset($_SESSION['validemp'])  ){
 	// valid user
 ?>
-<?php include 'Site_Menu.php';?>
+<h2>Howdy [user]"</h2>
 
 <?php
 } else {
 	// not logged in yet
 ?>
-Hello [COMPANY NAME] Employee, please enter your email and password:<br>
-<br>
+<h2>Hello [COMPANY NAME] Employee, please enter your email and password:<h2>
 <form action="Employee_Portal.php" method="post">
 Email Address: <input type="text" name="EmpEmail"><br>
 Password: <input type="password" name="EmpPass"><br>
@@ -68,8 +66,6 @@ Password: <input type="password" name="EmpPass"><br>
 </form>
 <?php 	
 }
-
 ?>
-
 </body>
 </html>
