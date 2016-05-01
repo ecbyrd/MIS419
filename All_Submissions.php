@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(  !isset($_SESSION['validemp'])  ){
+if(  !isset($_SESSION['validhr'])  ){
 	// invalid user
 	echo "You must be logged in to use this system.<br>";
 	echo "Please use the <a href='Employee_Portal.php'>login page</a><br>";
@@ -32,7 +32,7 @@ $servername = "localhost";
 $dbname = "Project419";
 $username = "admin419";
 $password = "password1";
-$Email=$_SESSION['validemp'];
+$Email=$_SESSION['validhr'];
 
 try {
 	$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -40,7 +40,7 @@ try {
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	//echo "Connected successfully"; 
 	
-	$stmt = $conn->query('SELECT * FROM Submissions, EmployeeList WHERE EmployeeList.empemail="' . $Email . '"');
+	$stmt = $conn->query('SELECT * FROM Submissions ORDER BY subnum');
  
 	while($emprow = $stmt->fetch(PDO::FETCH_ASSOC)) {
 		echo "<tr><td>" 
