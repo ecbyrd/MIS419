@@ -70,6 +70,5 @@ Password: <input type="password" name="EmpPass"><br>
 }
 ?>
 </div>
-<?php include 'Site_Footer.php'; ?>
 </body>
 </html>
