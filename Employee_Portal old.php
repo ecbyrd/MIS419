@@ -2,9 +2,18 @@
 session_start();
 ?>
 <html>
-<?php include 'Page_Head.php';?>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
 <body>
-<?php include 'Site_Header.php'; ?>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
 <?php
 
 if( $_POST['EmpEmail'] > ""){
@@ -51,13 +60,19 @@ if( $_POST['EmpEmail'] > ""){
 if(  isset($_SESSION['validemp'])  ){
 	// valid user
 ?>
-<h2>Howdy [user]"</h2>
-
+<h2>Employee System Menu</h2>
+<ul>
+  <li><a href="Submit_Claim.php">Submit Claim</a></li>
+  <li><a href="Submissions.php">Check Submissions</a></li>
+  <li><a href="Employee_Info.php">View or Update your information</a><br><br>&nbsp;</li>
+  <li><a href="Logout.php">Log out of the system</a></li>
+</ul>
 <?php
 } else {
 	// not logged in yet
 ?>
-<h2>Hello [COMPANY NAME] Employee, please enter your email and password:<h2>
+Hello [COMPANY NAME] Employee, please enter your email and password:<br>
+<br>
 <form action="Employee_Portal.php" method="post">
 Email Address: <input type="text" name="EmpEmail"><br>
 Password: <input type="password" name="EmpPass"><br>
@@ -65,6 +80,8 @@ Password: <input type="password" name="EmpPass"><br>
 </form>
 <?php 	
 }
+
 ?>
+
 </body>
 </html>

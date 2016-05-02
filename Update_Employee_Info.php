@@ -22,13 +22,8 @@ $tStreet = $_POST['street'];
 $tCity = $_POST['city'];
 $tState = $_POST['state'];
 $tZip = $_POST['zip'];
-$Email=$_SESSION['validemp'];
-echo $tPhone;
-echo $tStreet;
-echo $tCity;
-echo $tState;
-echo $tZip;
-echo $Email;
+$tEmail=$_SESSION['validemp'];
+
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -54,5 +49,6 @@ catch(PDOException $e)
 ?>
 Thank you for updating your info!!!<br>
 	<a href="Updated_Employee_Info.php">View New Info</a>
+	<a href="Employee_Portal.php">Go back to the menu</a>
 </body>
 </html>
