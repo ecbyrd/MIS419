@@ -29,7 +29,9 @@ if( $_POST['EmpEmail'] > ""){
 			 . ' WHERE emp_email="' . $tempEmail . '" AND emp_pwd = "'
 			 . $tempPassword . '"';
 		
+			
 		$stmt = $conn->query($sql);
+		
 		
 		$empid = 'SELECT empid FROM EmpLog WHERE emp_email="' . $tempEmail . '"';
 		$_SESSION['id_emp']=$empid;
@@ -52,7 +54,7 @@ if( $_POST['EmpEmail'] > ""){
 if(  isset($_SESSION['validemp'])  ){
 	// valid user
 ?>
-<h2>Howdy [user]"</h2>
+<h2>Howdy Employees of Byrds.co</h2>
 
 <?php
 } else {
