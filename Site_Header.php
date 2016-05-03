@@ -1,6 +1,6 @@
-<nav>
+<nav class="lime">
 <div class="nav-wrapper">
-  <a href="#" class="brand-logo">Byrds.Co</a>
+  <a href="/Employee_Portal.php" class="brand-logo"><img src="img/byrdco-mascot.jpg">Byrds.Co</a>
 <!--Desktop Menu-->
   <ul id="nav-mobile" class="right hide-on-med-and-down">
    <li><a href="Submit_Claim.php"><i class="material-icons">add_circle_outline</i>Submit a Claim</a></li>
