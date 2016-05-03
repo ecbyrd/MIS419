@@ -8,6 +8,7 @@ if(  !isset($_SESSION['validhr'])  ){
 	exit;
 }
 ?>
+<html>
 <?php include 'Page_Head.php';?>
 <body>
 <?php include 'HR_Header.php'; ?>
@@ -19,25 +20,19 @@ $username = "admin419";
 $password = "password1";
 
 // retrieve the incoming form's data from the $_POST array
-$tID = $_POST['empid'];
-$tFirst = $_POST['firstname'];
-$tLast = $_POST['lastname'];
-$tEmail = $_POST['emailadd'];
-$tPhone = $_POST['phone'];
-$tStreet = $_POST['street'];
-$tCity = $_POST['city'];
-$tState = $_POST['state'];
-$tZip = $_POST['zip'];
-$tPassword = $_POST['password'];
-$tMail = $_SESSION['validhr'];
+$tID = $_POST['id'];
+$tValue = $_POST['value'];
+
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     //echo "Connected successfully"; 
-	$sql = "INSERT INTO EmployeeList (empid, empfirst, emplast, empemail, empphone, empstreet, empcity, empst, empzip, enteredby)
-    VALUES ('" . $tID . "', '" . $tFirst . "', '" . $tLast . "', '" . $tEmail . "', '" . $tPhone . "', '" . $tStreet . "', '" . $tCity . "', '" . $tState . "', '" . $tZip . "', '" . $tMail . "')";
+	//$sql = "INSERT INTO Employee (empid, empfirst, emplast, empemail, empphone, empstreet, empcity, empstate, empzip)
+    //VALUES ('" . $tID . "', '" . $tFirst . "', '" . $tLast . "', '" . $tEmail . "', '" . $tPhone . "', '" . $tStreet . "', '" . $tCity . "', '" . $tState . "', '" . $tZip . "')";
+	
+	$sql = "UPDATE FlexBalance SET totalflex ='" . $tValue . "' WHERE FlexBalance.eid = '". $tID . "' ";
 	
 	//echo "<h2>" . $sql . "</h2>";
 	
@@ -55,27 +50,10 @@ try {
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     //echo "Connected successfully"; 
-	$sql = "INSERT INTO EmpLog (empid, emp_email, emp_pwd)
-    VALUES ('" . $tID . "', '" . $tEmail . "', '" . $tPassword . "')";
+	//$sql = "INSERT INTO Employee (empid, empfirst, emplast, empemail, empphone, empstreet, empcity, empstate, empzip)
+    //VALUES ('" . $tID . "', '" . $tFirst . "', '" . $tLast . "', '" . $tEmail . "', '" . $tPhone . "', '" . $tStreet . "', '" . $tCity . "', '" . $tState . "', '" . $tZip . "')";
 	
-	//echo "<h2>" . $sql . "</h2>";
-	
-	//$somevariable = stringconstant . varvalue . stringcontstant . varvalue . stringconstant
-	
-    // use exec() because no results are returned
-    $conn->exec($sql);
-    }
-catch(PDOException $e)
-    {
-    echo "Connection failed: " . $e->getMessage();
-    }
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //echo "Connected successfully"; 
-	$sql = "INSERT INTO FlexBalance (eemail, totalflex, paidout, balance)
-    VALUES ('" . $tEmail . "', '0', '0', '0')";
+	$sql = "UPDATE FlexBalance SET balance =FlexBalance.totalflex - FlexBalance.paidout";
 	
 	//echo "<h2>" . $sql . "</h2>";
 	
@@ -89,8 +67,9 @@ catch(PDOException $e)
     echo "Connection failed: " . $e->getMessage();
     }
 ?>
-Thank you for submitting that employee!!!<br>
-	<a href="HR_Portal.php">Go back to the menu</a>
+Flex Benefits Updated<br>
+<a href="Benefit_Updates.php">Update another Employee</a><br><br>
+<a href="HR_Portal.php">Go back to the menu</a>
 <?php include 'Site_Footer.php'; ?>
 </body>
 </html>

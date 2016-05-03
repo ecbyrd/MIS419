@@ -15,9 +15,15 @@ if (ini_get("session.use_cookies")) {
 // Finally, destroy the session.
 session_destroy();
    
-?><html><body>
+?>
+<html>
+<?php include 'Page_Head.php';?>
+<body>
+<?php include 'Admin_Header.php'; ?>
+<div class="container">
 Thanks for logging out!<br>
 <br>
 <a href="HR_Portal.php">Return to the login page</a>
+<?php include 'Site_Footer.php'; ?>
 </body>
 </html>

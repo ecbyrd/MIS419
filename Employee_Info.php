@@ -7,26 +7,14 @@ if(  !isset($_SESSION['validemp'])  ){
 	
 	exit;
 }
-?><html>
-<head>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
-
-<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.0.min.js">
-</script>
-
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js">
-</script>
-
-<script type="text/javascript" class="init">
-	$(document).ready(function() {
-		$('#emptable').DataTable();
-	} );
-</script>
-
-</head>
+?>
+<html>
+<?php include 'Page_Head.php';?>
 <body>
+<?php include 'Site_Header.php'; ?>
+<div class="container">	
 <table id="emptable">
-<thead><tr><th>ID</th><th>Email</th><th>First Name</th><th>Last Name</th><th>Phone</th><th>Street</th><th>City</th><th>State</th><th>Zip</th></tr></thead><tbody>
+<thead><tr><th>ID</th><th>Email</th><th>First Name</th><th>Last Name</th><th>Phone</th><th>Street</th><th>City</th><th>State</th><th>Zip</th><th>Total Flex Dollars</th><th>Flex Dollars Paid Out</th><th>Flex Balance</th></tr></thead><tbody>
 <?php
 $servername = "localhost";
 $dbname = "Project419";
@@ -40,7 +28,7 @@ try {
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	//echo "Connected successfully"; 
 	
-	$stmt = $conn->query('SELECT * FROM EmployeeList WHERE empemail="' . $Email . '"');
+	$stmt = $conn->query('SELECT * FROM EmployeeList, FlexBalance WHERE empemail="' . $Email . '" AND FlexBalance.eid = EmployeeList.empid');
  
 	while($emprow = $stmt->fetch(PDO::FETCH_ASSOC)) {
 		echo "<tr><td>" 
@@ -61,6 +49,12 @@ try {
 		. $emprow['empst'] 
 		. '</td><td>'
 		. $emprow['empzip'] 
+		. '</td><td>'
+		. $emprow['totalflex'] 
+		. '</td><td>'
+		. $emprow['paidout'] 
+		. '</td><td>'
+		. $emprow['balance'] 
 		. "</td></tr>";
 	}
 	
@@ -88,5 +82,6 @@ Update your address or phone number:<br><br>
 	</form>
 
 <a href="Employee_Portal.php">Go back to the menu</a>
+<?php include 'Site_Footer.php'; ?>
 </body>
 </html>

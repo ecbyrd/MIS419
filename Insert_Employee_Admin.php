@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(  !isset($_SESSION['validhr'])  ){
+if(  !isset($_SESSION['validadmin'])  ){
 	// invalid user
 	echo "You must be logged in to use this system.<br>";
 	echo "Please use the <a href='sample_menu.php'>login page</a><br>";
@@ -8,9 +8,10 @@ if(  !isset($_SESSION['validhr'])  ){
 	exit;
 }
 ?>
+<html>
 <?php include 'Page_Head.php';?>
 <body>
-<?php include 'HR_Header.php'; ?>
+<?php include 'Admin_Header.php'; ?>
 <div class="container">	
 <?php
 $servername = "localhost";
@@ -29,7 +30,7 @@ $tCity = $_POST['city'];
 $tState = $_POST['state'];
 $tZip = $_POST['zip'];
 $tPassword = $_POST['password'];
-$tMail = $_SESSION['validhr'];
+$tMail=$_SESSION['validadmin'];
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -50,6 +51,7 @@ catch(PDOException $e)
     {
     echo "Connection failed: " . $e->getMessage();
     }
+
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     // set the PDO error mode to exception
@@ -69,13 +71,13 @@ catch(PDOException $e)
     {
     echo "Connection failed: " . $e->getMessage();
     }
-try {
+    try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     //echo "Connected successfully"; 
-	$sql = "INSERT INTO FlexBalance (eemail, totalflex, paidout, balance)
-    VALUES ('" . $tEmail . "', '0', '0', '0')";
+	$sql = "INSERT INTO FlexBalance (eid, totalflex, balance)
+    VALUES ('" . $tID . "', '0', '0')";
 	
 	//echo "<h2>" . $sql . "</h2>";
 	
@@ -90,7 +92,7 @@ catch(PDOException $e)
     }
 ?>
 Thank you for submitting that employee!!!<br>
-	<a href="HR_Portal.php">Go back to the menu</a>
+	<a href="Admin_Portal.php">Go back to the menu</a>
 <?php include 'Site_Footer.php'; ?>
 </body>
 </html>

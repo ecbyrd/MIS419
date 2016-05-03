@@ -8,9 +8,11 @@ if(  !isset($_SESSION['validhr'])  ){
 	exit;
 }
 ?>
-
 <html>
+<?php include 'Page_Head.php';?>
 <body>
+<?php include 'HR_Header.php'; ?>
+<div class="container">	
 	<form action="Insert_Employee.php" method="post">
 	  Employee ID:<br>
 	  <input type="text" name="empid" value=""><br>
@@ -30,7 +32,10 @@ if(  !isset($_SESSION['validhr'])  ){
 	  <input type="text" name="state" value=""><br><br>
 	  Zip Code:<br>
 	  <input type="text" name="zip" value=""><br><br>
+	  Create a password for the User:<br>
+	  <input type="text" name="password" value=""><br><br>
 	  <input type="submit" value="Submit">
 	</form>
+<?php include 'Site_Footer.php'; ?>
 </body>
 </html>

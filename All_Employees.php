@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(  !isset($_SESSION['validemp'])  ){
+if(  !isset($_SESSION['validhr'])  ){
 	// invalid user
 	echo "You must be logged in to use this system.<br>";
 	echo "Please use the <a href='Employee_Portal.php'>login page</a><br>";
@@ -10,7 +10,7 @@ if(  !isset($_SESSION['validemp'])  ){
 ?><html>
 <?php include 'Page_Head.php';?>
 <body>
-<?php include 'Site_Header.php'; ?>
+<?php include 'HR_Header.php'; ?>
 <div class="container">	
 <table id="emptable">
 <thead><tr><th>ID</th><th>Email</th><th>First Name</th><th>Last Name</th><th>Phone</th><th>Street</th><th>City</th><th>State</th><th>Zip</th></tr></thead><tbody>
@@ -27,7 +27,7 @@ try {
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	//echo "Connected successfully"; 
 	
-	$stmt = $conn->query('SELECT * FROM EmployeeList WHERE empemail="' . $Email . '"');
+	$stmt = $conn->query('SELECT * FROM EmployeeList');
  
 	while($emprow = $stmt->fetch(PDO::FETCH_ASSOC)) {
 		echo "<tr><td>" 
@@ -60,6 +60,7 @@ catch(PDOException $e) {
 
 </tbody></table>
 
-<a href="Employee_Portal.php">Go back to the menu</a>
+<a href="HR_Portal.php">Go back to the menu</a>
+<?php include 'Site_Footer.php'; ?>
 </body>
 </html>

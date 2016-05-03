@@ -2,7 +2,10 @@
 session_start();
 ?>
 <html>
+<?php include 'Page_Head.php';?>
 <body>
+<?php include 'HR_Header.php'; ?>
+<div class="container">	
 <?php
 
 if( $_POST['HRemail'] > ""){
@@ -23,7 +26,7 @@ if( $_POST['HRemail'] > ""){
 		$tempPassword = $_POST['HRPass'];
 		
 		$sql = 'SELECT * FROM HRStaff '
-			 . ' WHERE UserEmail="' . $tempEmail . '" AND UserPassword = "'
+			 . ' WHERE hr_email="' . $tempEmail . '" AND hr_pwd = "'
 			 . $tempPassword . '"';
 		
 		$stmt = $conn->query($sql);
@@ -47,27 +50,22 @@ if( $_POST['HRemail'] > ""){
 if(  isset($_SESSION['validhr'])  ){
 	// valid user
 ?>
-<h2>Employee System Menu</h2>
-<ul>
-  <li><a href="SampleForm.php">Add New Employee</a></li>
-  <li><a href="Sample_EmployeeReport.php">View All Employees</a><br><br>&nbsp;</li>
-  <li><a href="logout.php">Log out of the system</a></li>
-</ul>
+<h2>Welcome HR Staff of Byrds.co</h2>
+
 <?php
 } else {
 	// not logged in yet
 ?>
-Hello [COMPANY NAME] Human Resources Staff, please enter your email and password:<br>
-<br>
-<form action="sample_menu.php" method="post">
+<h2>Hello HR Staff, please enter your email and password:</h2>
+<form action="HR_Portal.php" method="post">
 Email Address: <input type="text" name="HRemail"><br>
 Password: <input type="password" name="HRPass"><br>
 <input type = "submit">
 </form>
 <?php 	
 }
-
 ?>
-
+</div>
+<?php include 'Site_Footer.php'; ?>
 </body>
 </html>

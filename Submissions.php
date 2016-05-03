@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 if(  !isset($_SESSION['validemp'])  ){
 	// invalid user
@@ -7,26 +8,14 @@ if(  !isset($_SESSION['validemp'])  ){
 	
 	exit;
 }
-?><html>
-<head>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
-
-<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.0.min.js">
-</script>
-
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js">
-</script>
-
-<script type="text/javascript" class="init">
-	$(document).ready(function() {
-		$('#emptable').DataTable();
-	} );
-</script>
-
-</head>
+?>
+<html>
+<?php include 'Page_Head.php';?>
 <body>
+<?php include 'Site_Header.php'; ?>
+<div class="container">	
 <table id="emptable">
-<thead><tr><th>First Name</th><th>Last Name</th><th>Submission ID</th><th>Date</th><th>Value</th><th>Status</th></tr></thead><tbody>
+<thead><tr><th>Submission ID</th><th>Date</th><th>Submitted Value</th><th>Approved Value</th><th>Status</th></tr></thead><tbody>
 <?php
 $servername = "localhost";
 $dbname = "Project419";
@@ -40,21 +29,19 @@ try {
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	//echo "Connected successfully"; 
 	
-	$stmt = $conn->query('SELECT * FROM Submissions, EmployeeList WHERE EmployeeList.empemail="' . $Email . '"');
+	$stmt = $conn->query('SELECT * FROM Submissions WHERE Submissions.employemail="' . $Email . '" ORDER by subnum');
  
 	while($emprow = $stmt->fetch(PDO::FETCH_ASSOC)) {
 		echo "<tr><td>" 
-		. $emprow['empfirst'] 
-		. '</td><td>'		
-		. $emprow['emplast'] 
-		. '</td><td>'
 		. $emprow['subnum'] 
 		. '</td><td>'
 		. $emprow['date'] 
 		. '</td><td>'
 		. $emprow['dollarval'] 
 		. '</td><td>'
-		. $emprow['approval'] 
+		. $emprow['approvedval'] 
+		. '</td><td>'
+		. $emprow['status'] 
 		. "</td></tr>";
 	}
 	
@@ -68,5 +55,6 @@ catch(PDOException $e) {
 </tbody></table><br>
 
 <a href="Employee_Portal.php">Go back to the menu</a>
+<?php include 'Site_Footer.php'; ?>
 </body>
 </html>

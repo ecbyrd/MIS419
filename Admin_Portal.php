@@ -2,7 +2,10 @@
 session_start();
 ?>
 <html>
+<?php include 'Page_Head.php';?>
 <body>
+<?php include 'Admin_Header.php'; ?>
+<div class="container">	
 <?php
 
 if( $_POST['AdminEmail'] > ""){
@@ -23,10 +26,12 @@ if( $_POST['AdminEmail'] > ""){
 		$tempPassword = $_POST['AdminPass'];
 		
 		$sql = 'SELECT * FROM DBAdmin '
-			 . ' WHERE UserEmail="' . $tempEmail . '" AND UserPassword = "'
+			 . ' WHERE email="' . $tempEmail . '" AND password = "'
 			 . $tempPassword . '"';
 		
+			
 		$stmt = $conn->query($sql);
+		
 		
 		$matchFound = false;		
 		while($emprow = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -47,27 +52,22 @@ if( $_POST['AdminEmail'] > ""){
 if(  isset($_SESSION['validadmin'])  ){
 	// valid user
 ?>
-<h2>Employee System Menu</h2>
-<ul>
-  <li><a href="SampleForm.php">Add New Employee</a></li>
-  <li><a href="Sample_EmployeeReport.php">View All Employees</a><br><br>&nbsp;</li>
-  <li><a href="logout.php">Log out of the system</a></li>
-</ul>
+<h2>Welcome DB Admin of Byrds.co</h2>
+
 <?php
 } else {
 	// not logged in yet
 ?>
-Hello [COMPANY NAME] Admin, please enter your email and password:<br>
-<br>
-<form action="sample_menu.php" method="post">
+<h2>Hello Admin, please enter your email and password:</h2>
+<form action="Admin_Portal.php" method="post">
 Email Address: <input type="text" name="AdminEmail"><br>
 Password: <input type="password" name="AdminPass"><br>
 <input type = "submit">
 </form>
 <?php 	
 }
-
 ?>
-
+</div>
+<?php include 'Site_Footer.php'; ?>
 </body>
 </html>
